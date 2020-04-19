@@ -1,5 +1,4 @@
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Employee {
     private int id;
@@ -7,7 +6,6 @@ public class Employee {
     private String surname;
     private String job;
     private String salary;
-
 
     public Employee() {
     }

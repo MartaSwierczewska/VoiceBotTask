@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 public class EmployeeMapper {
     private static final Pattern pattern = Pattern.compile("\\s\"(.*?)\"");
 
-    public String executePatternOnMetadata(String data){
+    private String executePatternOnMetadata(String data){
         Matcher m = pattern.matcher(data);
         if(m.find()) {
             return (m.group(1));
