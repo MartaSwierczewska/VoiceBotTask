@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataExtractor {
+public class EmployeeDataExtractor {
 
     public List<Employee> getEmployeeListFromJsonFile(String filePath) throws IOException {
         Employees employees = new ObjectMapper().readValue(Paths.get(filePath).toFile(), new TypeReference<Employees>() {});
