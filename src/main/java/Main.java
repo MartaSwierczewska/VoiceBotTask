@@ -16,17 +16,25 @@ public class Main {
         List<Employee> employeeListFromJSONFile = dataExtractor.getEmployeeListFromJsonFile(JSON_FILE_PATH);
         List<Employee> employeeListFromCSVFile = dataExtractor.getEmployeeListFromCSVFile(CSV_FILE_PATH);
 
-        printResult(employeeListFromJSONFile);
+        transformSalaryFormat(employeeListFromJSONFile);
+        transformSalaryFormat(employeeListFromCSVFile);
+
+        Map<String,Double> salariesForJobsJSON = calculateSalariesForJobs(employeeListFromJSONFile);
+        Map<String,Double> salariesForJobsCSV = calculateSalariesForJobs(employeeListFromCSVFile);
+
+        printResult(salariesForJobsJSON);
         System.out.println("=======");
-        printResult(employeeListFromCSVFile);
+        printResult(salariesForJobsCSV);
 
     }
 
-    static void printResult(List<Employee> employeeList){
-        transformSalaryFormat(employeeList);
-        employeeList.stream()
-                .collect(Collectors.groupingBy(Employee::getJob, Collectors.summingDouble(e -> Double.parseDouble(e.getSalary()))))
-                .forEach((job, sumSalary) -> System.out.println(job + " - " + String.format("%.2f", sumSalary)));
+    static void printResult( Map<String,Double> salariesForJobs ){
+        salariesForJobs.forEach((job, sumSalary) -> System.out.println(job + " - " + String.format("%.2f", sumSalary)));
+    }
+
+    static Map<String, Double> calculateSalariesForJobs(List<Employee> employeeList){
+        return employeeList.stream()
+                .collect(Collectors.groupingBy(Employee::getJob, Collectors.summingDouble(e -> Double.parseDouble(e.getSalary()))));
     }
 
     static void transformSalaryFormat(List<Employee> employeeList){
