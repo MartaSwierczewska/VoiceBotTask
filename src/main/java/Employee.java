@@ -1,4 +1,7 @@
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.Objects;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Employee {
     private int id;
@@ -27,6 +30,23 @@ public class Employee {
                 ", job='" + job + '\'' +
                 ", salary=" + salary +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id &&
+                name.equals(employee.name) &&
+                surname.equals(employee.surname) &&
+                job.equals(employee.job) &&
+                salary.equals(employee.salary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, job, salary);
     }
 
     public int getId() {

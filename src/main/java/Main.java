@@ -1,19 +1,24 @@
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Main {
 
     private static final String JSON_FILE_PATH = "employees.json";
     private static final String CSV_FILE_PATH = "employees.csv";
 
-    private static EmployeeService employeeService = new EmployeeService();
+    private static final EmployeeService employeeService = new EmployeeService();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         EmployeeDataExtractor employeeDataExtractor = new EmployeeDataExtractor();
 
-        List<Employee> employeeListFromJSONFile = employeeDataExtractor.getEmployeeListFromJsonFile(JSON_FILE_PATH);
-        List<Employee> employeeListFromCSVFile = employeeDataExtractor.getEmployeeListFromCSVFile(CSV_FILE_PATH);
+        List<Employee> employeeListFromJSONFile=new ArrayList<>();
+        List<Employee> employeeListFromCSVFile=new ArrayList<>();
+        try{
+            employeeListFromJSONFile = employeeDataExtractor.getEmployeeListFromJsonFile(JSON_FILE_PATH);
+            employeeListFromCSVFile = employeeDataExtractor.getEmployeeListFromCSVFile(CSV_FILE_PATH);
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
 
         execute(employeeListFromJSONFile);
         System.out.println("=======");

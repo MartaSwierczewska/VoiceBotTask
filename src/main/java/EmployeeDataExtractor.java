@@ -16,21 +16,18 @@ public class EmployeeDataExtractor {
         return employees.getEmployees();
     }
 
-    public List<Employee> getEmployeeListFromCSVFile(String filePath) {
+    public List<Employee> getEmployeeListFromCSVFile(String filePath) throws IOException {
         EmployeeMapper employeeMapper = new EmployeeMapper();
         List<Employee> employeeList = new ArrayList<>();
-        try (BufferedReader br = Files.newBufferedReader(Paths.get(filePath), StandardCharsets.UTF_8)) {
-//            header line needs to be skipped
-            br.readLine();
-            String line = br.readLine();
-            while (line != null) {
-                String[] attributes = line.split(";");
-                Employee employee = employeeMapper.createEmployee(attributes);
-                employeeList.add(employee);
-                line = br.readLine();
-            }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+        BufferedReader br = Files.newBufferedReader(Paths.get(filePath), StandardCharsets.UTF_8);
+//      header line needs to be skipped
+        br.readLine();
+        String line = br.readLine();
+        while (line != null) {
+            String[] attributes = line.split(";");
+            Employee employee = employeeMapper.createEmployee(attributes);
+            employeeList.add(employee);
+            line = br.readLine();
         }
         return employeeList;
     }
