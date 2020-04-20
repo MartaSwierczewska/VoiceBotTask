@@ -1,14 +1,14 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.gen5.api.Assertions.assertEquals;
-import static org.junit.gen5.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-class EmployeeDataExtractorTest {
+public class EmployeeDataExtractorTest {
     private EmployeeDataExtractor employeeDataExtractor;
 
     @BeforeEach
