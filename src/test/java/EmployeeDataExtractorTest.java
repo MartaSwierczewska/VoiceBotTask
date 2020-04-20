@@ -1,4 +1,3 @@
-import org.junit.gen5.api.Executable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.gen5.api.Assertions.assertEquals;
@@ -19,7 +18,7 @@ class EmployeeDataExtractorTest {
 
     @Test
     void shouldReturnListOfEmployeesFromJson() throws IOException {
-        String jsonFileToTest = "src/main/resources/JsonFileTest.json";
+        String jsonFileToTest = "src/test/resources/JsonFileTest.json";
 
         List<Employee> employeeList = employeeDataExtractor.getEmployeeListFromJsonFile(jsonFileToTest);
 
@@ -30,13 +29,13 @@ class EmployeeDataExtractorTest {
     }
 
     @Test
-    void shouldThrownIOExceptionWhenJsonFileNotFound() throws IOException {
-        assertThrows(IOException.class, (Executable) employeeDataExtractor.getEmployeeListFromJsonFile(""));
+    void shouldThrownIOExceptionWhenJsonFileNotFound() {
+        assertThrows(IOException.class, () -> employeeDataExtractor.getEmployeeListFromJsonFile(""));
     }
 
     @Test
     void shouldReturnListOfEmployeesFromCSV() throws IOException {
-        String csvFileToTest = "src/main/resources/CSVFileTest.csv";
+        String csvFileToTest = "src/test/resources/CSVFileTest.csv";
 
         List<Employee> employeeList = employeeDataExtractor.getEmployeeListFromCSVFile(csvFileToTest);
 
@@ -48,7 +47,7 @@ class EmployeeDataExtractorTest {
 
     @Test
     void shouldThrownIOExceptionWhenCSVFileNotFound() throws IOException {
-        assertThrows(IOException.class, (Executable)employeeDataExtractor.getEmployeeListFromCSVFile(""));
+        assertThrows(IOException.class, () -> employeeDataExtractor.getEmployeeListFromCSVFile(""));
     }
 
 }
