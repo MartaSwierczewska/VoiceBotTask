@@ -1,19 +1,21 @@
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.gen5.api.Assertions.assertEquals;
 
 public class EmployeeMapperTest {
     private EmployeeMapper employeeMapper;
 
-    @Before
+    @BeforeEach
     public void setUp(){
         employeeMapper = new EmployeeMapper();
     }
     @Test
     public void shouldCreateEmployee() {
-        Employee expectedEmployee = new Employee(1,"Mark","Green","Teacher","3540,20");
         String[] attributes = new String[]{"      1","      \"Mark\"","      \"Green\"","      \"Teacher\"","      \"3540,20\""};
+        
         Employee employee = employeeMapper.createEmployee(attributes);
+
+        Employee expectedEmployee = new Employee(1,"Mark","Green","Teacher","3540,20");
         assertEquals(expectedEmployee,employee);
     }
 }
