@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Main {
 
-    private static final String JSON_FILE_PATH = "employees.json";
-    private static final String CSV_FILE_PATH = "employees.csv";
+    private static final String JSON_FILE_PATH = "src/main/resources/employees.json";
+    private static final String CSV_FILE_PATH = "src/main/resources/employees.csv";
 
     private static final EmployeeService employeeService = new EmployeeService();
 
